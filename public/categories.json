@@ -1,18 +1,21 @@
 [
     {
-      "name": "Apple",
+      "brand": "Apple",
+      "categoryid":"1",
       "image": "https://media.sketchfab.com/models/8b13cb3155da41108b1a13e3bc35442d/thumbnails/1d84c50b08a140b4b34130202daeb720/blob.jpeg",
       "quality":"Excellent",
       "rating":"4.9"
     },
     {
-      "name": "HP",
+      "brand": "HP",
+      "categoryid":"2",
       "image": "https://www.companieshistory.com/wp-content/uploads/2013/07/Hewlett-Packard.png",
       "quality":"Excellent",
       "rating":"4.8"
     },
     {
-      "name": "SonyVaio",
+      "brand": "Sony",
+      "categoryid":"3",
       "image": "https://i.pinimg.com/originals/a6/6e/22/a66e22b7bc48ed0713f186d2059a17e4.jpg",
       "quality":"Good",
       "rating":"4.5"

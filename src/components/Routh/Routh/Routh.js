@@ -14,11 +14,12 @@ import MyBuyers from "../../Pages/Dashboard/Seller/MyBuyers/MyBuyers";
 import MyProducts from "../../Pages/Dashboard/Seller/MyProducts/MyProducts";
 import Seller from "../../Pages/Dashboard/Seller/Seller/Seller";
 import Home from "../../Pages/Home/Home/Home";
+
 import Login from "../../Pages/Login/Login";
-import MyProductsPage from "../../Pages/MyProductsPage/MyProductsPage";
+import MyProductsPage from "../../Pages/Home/Catagories/MyProductsPage/MyProductsPage";
 import Registration from "../../Pages/Registration/Registration";
 import ErrorPage from "../../Share/ErrorPage/ErrorPage";
-import PrivateRouth from "../PrivateRouth/PrivateRouth";
+// import PrivateRouth from "../PrivateRouth/PrivateRouth";
 
 const router = createBrowserRouter([
     {path:'/',element:<Main></Main>,
@@ -26,7 +27,11 @@ const router = createBrowserRouter([
     children:[
       {path:'/',element:<Home></Home>},
       {path:'/home',element:<Home></Home>},
-      {path:'/products',element:<MyProductsPage></MyProductsPage>},
+      {path:'/productpage/:id',element:<MyProductsPage></MyProductsPage>,
+    loader:({params})=>fetch(`http://localhost:8000/addproducts/${params.id}`)
+    },
+    
+
       {path:'/blogs',element:<Blogs></Blogs>},
       {path:'/register',element:<Registration></Registration>},
       {path:'/login',element:<Login></Login>}

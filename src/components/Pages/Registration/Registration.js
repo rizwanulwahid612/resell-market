@@ -34,7 +34,7 @@ const Registration = () => {
           }
           updateProfileUser(userInfo)
             .then(() => {
-            //   saveUser(name,email)
+              sellersInfo(name,email)
           })
           .catch((error) =>console.log(error));
         })
@@ -43,22 +43,23 @@ const Registration = () => {
           });
     } 
 
-    // const saveUser =(name,email)=>{
-    //   const users={name,email}
-    //   fetch('http://localhost:5000/users',{
-    //     method:'POST',
-    //     headers:{
-    //       'content-type':'application/json'
-    //     },
-    //     body:JSON.stringify(users)
-    //   })
-    //   .then(res=>res.json())
-    //   .then(data=>{
-    //     console.log(data)
-    //     /////////////////////////
-    //     // setEmailToken(email);
-    //   })
-    // }
+    const sellersInfo =(name,email)=>{
+      const sellers={name,email}
+      fetch('http://localhost:8000/sellers',{
+        method:'POST',
+        headers:{
+          'content-type':'application/json'
+        },
+        body:JSON.stringify(sellers)
+      })
+      .then(res=>res.json())
+      .then(data=>{
+        console.log(data)
+        toast.success('Seller information has been taken')
+        /////////////////////////
+        // setEmailToken(email);
+      })
+    }
 
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -102,8 +103,9 @@ const Registration = () => {
                 
                 <Link to="/login" className="label-text-alt link link-hover">Already have any account. plz Login?</Link>
               </div>
-              <div className="form-control mt-6 btn btn-info">
-              <input type="submit" value='Register'/>
+              <div className="  btn btn-info">
+                <button type="submit">Register</button>
+              {/* <input type="submit" value='Register'/> */}
               </div>
             </form>
           </div>

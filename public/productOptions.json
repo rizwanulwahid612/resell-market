@@ -1,11 +1,11 @@
 [
     {
-      "category1":"Apple",
+     
       "brand": "Apple",
       "image": "https://media.sketchfab.com/models/8b13cb3155da41108b1a13e3bc35442d/thumbnails/1d84c50b08a140b4b34130202daeb720/blob.jpeg",
       "quality":"Excellent",
       "rating":"4.9",
-      "products1": [
+      "products": [
         {
           "image":"https://www.thestreet.com/.image/t_share/MTkwMzYzMzkxNjI0MjI2MTk2/apple-2022-13-inch-macbook-pro.jpg",
           "name":"Apple MacBook Pro 13-inch 2022",
@@ -206,12 +206,12 @@
     
     
     {
-      "category2":"HP",
+      
       "brand": "HP",
       "image": "https://www.companieshistory.com/wp-content/uploads/2013/07/Hewlett-Packard.png",
       "quality":"Excellent",
       "rating":"4.9",
-      "products2": [
+      "products": [
         {
           "image":"https://www.startech.com.bd/image/cache/catalog/laptop/hp-laptop/15s-du1116tu/15s-du1116tu-01-500x500.jpg",
           "name":"HP 15s-du1116TU Pentium Silver N5030 15.6",
@@ -412,12 +412,11 @@
 
   
     {
-      "category3": "SonyVaio",
       "brand": "SonyVaio",
       "image": "https://i.pinimg.com/originals/a6/6e/22/a66e22b7bc48ed0713f186d2059a17e4.jpg",
       "quality":"Excellent",
       "rating":"4.9",
-      "products3": [
+      "products": [
         {
           "image":"https://cdn.reinisfischer.com/sites/default/files/upload/1_220.jpg",
           "name":"Vaio SE Series Core i5 8th Gen - (8 GB/512 GB SSD/Windows 10 Home) NP14V1IN004P Thin and Light Laptop",

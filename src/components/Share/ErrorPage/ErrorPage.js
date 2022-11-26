@@ -19,11 +19,11 @@ const ErrorPage = () => {
     return (
         <div id="error-page">
         <h1>Oops!</h1>
-        <p>Sorry, an unexpected error has occurred.</p>
+        <p>Sorry, an unexpected error 404</p>
         <p>
           <i>{error.statusText || error.message}</i>
         </p>
-        <button className='btn btn-warning' onClick={handleLogOut}>Sign Out</button>
+        <button className='btn btn-warning' onClick={handleLogOut}>Log Out</button>
       </div>
     );
 };

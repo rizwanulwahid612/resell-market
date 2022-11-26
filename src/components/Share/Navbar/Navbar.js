@@ -16,12 +16,12 @@ const Navbar = () => {
   }
     const reactItem= <React.Fragment>
               <li><Link to='/home'>Home</Link></li>
-              <li><Link to='/products'>Products</Link></li>
+              {/* <li><Link to='/products/:id'>Products</Link></li> */}
               <li><Link to='/blogs'>Blogs</Link></li>
              {user?.uid?
              <>
               <li><Link to='/dashboard'>Dashboard</Link></li>
-              <li><button className='btn btn-warning' onClick={handleLogOut}>Sign Out</button></li>
+              <li><button className='btn btn-warning' onClick={handleLogOut}>LogOut</button></li>
           </>
            :
            <>
@@ -41,7 +41,7 @@ const Navbar = () => {
              {reactItem}
             </ul>
           </div>
-          <Link to='/' className="btn btn-ghost normal-case text-xl">Doctors Portal</Link>
+          <Link to='/' className="btn btn-ghost normal-case text-xl">Laptop Resell Store</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">

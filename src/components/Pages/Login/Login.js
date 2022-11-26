@@ -4,9 +4,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider';
 import TokenHook from '../../Hooks/TokenHook/TokenHook';
-
+import { FcGoogle } from "react-icons/fc";
 const Login = () => {
-    const {loginUser,resetPassword}=useContext(AuthContext);
+    const {loginUser,resetPassword,GoogleSignin}=useContext(AuthContext);
     const [reset,setReset]=useState('');
     const { register, handleSubmit,formState: { errors } } = useForm();
     const location = useLocation();
@@ -37,6 +37,33 @@ const Login = () => {
           });
 
     } 
+  const handleGoogleLogin=()=>{
+    GoogleSignin()
+    .then((result) => {
+      const user = result.user;
+      console.log(user,user.displayName,user.email)
+      buyersInfo(user.displayName,user.email)
+
+    }).catch((error) => {
+    console.log(error)
+    });
+  }
+
+  const buyersInfo =(name,email)=>{
+    const buyers={name,email}
+    fetch('http://localhost:8000/buyers',{
+      method:'POST',
+      headers:{
+        'content-type':'application/json'
+      },
+      body:JSON.stringify(buyers)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data)
+      toast.success('Buyer information has been taken')
+    })
+  }
 
     const handleforgotPass=(event)=>{
         event.preventDefault();
@@ -98,10 +125,13 @@ const Login = () => {
             <Link to="/register" className="label-text-alt link link-hover">Don't have any acoouunt? plz Register</Link>
           </label>
         </div>
-        <div className="form-control mt-6 btn btn-info">
-        <input type="submit" value='Login'/>
+        <div className="btn btn-info">
+          <button type="submit">LogIN</button>
         </div>
       </form>
+      <div className="mx-6 btn mb-10 btn-warning">
+      <button style={{display:'flex'}} onClick={handleGoogleLogin} type="submit"><FcGoogle></FcGoogle> GoogleLogin</button>
+      </div>
     </div>
   </div>
 </div>
