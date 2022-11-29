@@ -45,6 +45,7 @@ const AllSellers = () => {
 
     <thead>
       <tr>
+        <th>count</th>
         <th>Buyers Name</th>
         <th>Email</th>
         <th>Delete</th>
@@ -53,8 +54,8 @@ const AllSellers = () => {
     <tbody>
    
       {data &&
-        data?.map(buyers=><tr key={buyers._id}>
-         
+        data?.map((buyers,i)=><tr key={buyers._id}>
+         <th>{i+1}</th>
           <td>
             <div className="flex items-center space-x-3">
               <div>

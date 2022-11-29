@@ -1,23 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider';
+import TokenHook from '../../Hooks/TokenHook/TokenHook';
 
 
 const Registration = () => {
     const {createUser,updateProfileUser}=useContext(AuthContext)
     const { register, handleSubmit,formState: { errors } } = useForm();
-    
+    const [signUpError,setSignupError]=useState('')
 
-    const navigate=useNavigate();
-    // const [emailToken,setEmailToken]=useState('');
-    // const[token]=TokenHook(emailToken);
-    // if(token){
-    //     navigate('/');
-    // }
+    
+    const [emailToken,setEmailToken]=useState('');
+    const[token]=TokenHook(emailToken);
+    const navigate = useNavigate();
+    if(token){
+        navigate('/');
+    }
     
     const onSubmit = data =>{
+      setSignupError('')
         const name= data.name;
         const email= data.email;
         const password = data.password;
@@ -25,7 +28,6 @@ const Registration = () => {
         createUser(email,password)
         .then(result=>{
             const user=result.user;
-            navigate('/login')
             console.log(user)
             toast('User create successfully')
             const userInfo = {
@@ -40,6 +42,7 @@ const Registration = () => {
         })
         .catch((error) => {
             console.log(error.message);
+            setSignupError(error.message)
           });
     } 
 
@@ -57,7 +60,7 @@ const Registration = () => {
         console.log(data)
         toast.success('Seller information has been taken')
         /////////////////////////
-        // setEmailToken(email);
+        setEmailToken(email)
       })
     }
 
@@ -105,8 +108,9 @@ const Registration = () => {
               </div>
               <div className="  btn btn-info">
                 <button type="submit">Register</button>
-              {/* <input type="submit" value='Register'/> */}
+             
               </div>
+              {signUpError && <p>{signUpError}</p>}
             </form>
           </div>
         </div>

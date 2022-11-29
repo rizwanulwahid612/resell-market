@@ -33,7 +33,7 @@ const AddProducts = () => {
            name:data.name,
            brand:data.brand,
            categoryid:data.categoryid,
-           brandImage:data.brandImage,
+          //  brandImage:data.brandImage,
            location:data.location,
            productcondition:data.productcondition,
            resellprice:data.resellprice,
@@ -88,33 +88,33 @@ const AddProducts = () => {
               <label className="label">
                 <span className="label-text">Product Name</span>
               </label>
-              <input type="text" placeholder="Product Name" className="input input-bordered"  {...register("name", { required: true, maxLength: 30 })} />
+              <input type="text" placeholder="Product Name" className="input input-bordered"  {...register("name", { required: true })} />
               {errors.name && <p role="alert">{errors.name?.message}</p>}
             </div>
 
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Brand Name</span>
+                <span className="label-text">Brand Name: Apple / HP / Sony </span>
               </label>
-              <input type="text" placeholder="Brand Name" className="input input-bordered"  {...register("brand", { required: true, maxLength: 30 })} />
+              <input type="text" placeholder="Brand Name" className="input input-bordered"  {...register("brand", { required: true })} />
               {errors.brand && <p role="alert">{errors.brand?.message}</p>}
             </div>
 
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Same Brand for Same Category_id</span>
+                <span className="label-text">Apple: 1 // HP: 2 // Sony: 3 ;"only use number"</span>
               </label>
               <input type="text" placeholder="For Same Brand Give All Same Category_id" className="input input-bordered"  {...register("categoryid", { required: true, maxLength: 30 })} />
               {errors.categoryid && <p role="alert">{errors.categoryid?.message}</p>}
             </div>
             
-            <div className="form-control">
+            {/* <div className="form-control">
               <label className="label">
                 <span className="label-text">Brand Image url</span>
               </label>
               <input type="text" placeholder="Brand Image url" className="input input-bordered"  {...register("brandImage", { required: true })} />
               {errors.brandImage && <p role="alert">{errors.brandImage?.message}</p>}
-            </div>
+            </div> */}
 
             <div className="form-control">
               <label className="label">

@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../../../Context/AuthProvider';
 
 const BookingModal = ({productPrice,seleclectedDate}) => {
+  console.log(productPrice)
     const {user}=useContext(AuthContext)
     const date = format(seleclectedDate, 'PP')
     
@@ -21,12 +22,14 @@ const BookingModal = ({productPrice,seleclectedDate}) => {
                Buyer: name,
                BuyerEmail:email,
                Brand:productPrice.brand,
+               Image:productPrice.image,
+               Seller:productPrice.sellername,
+               SellersEmail:productPrice.selleremail,
                product: productPrice.name,
                price:productPrice.resellprice,
                Location:location,
                BuyerPhone:phone,
-               BookingDate: date,
-    
+               BookingDate: date
             }
             console.log(booking)
             fetch('http://localhost:8000/bookings',{

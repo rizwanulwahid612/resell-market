@@ -1,43 +1,104 @@
-import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { Link } from 'react-router-dom';
-const MyProducts = () => {
+import React, { useContext } from 'react';
+import {useQuery} from '@tanstack/react-query'
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../../../Context/AuthProvider';
+import Products from './Products';
 
-    const { data=[], refetch,isLoading } = useQuery({
-        queryKey: ['addproducts'],
-        queryFn: async () => {
-            const res = await fetch('http://localhost:8000/addproducts');
-            const data = await res.json();
-            return data;
-        }
-    });
-   if(isLoading){
+
+
+const MyProducts = () => {
+  const { user } = useContext(AuthContext);
+  //  const [advitise,setAdvitise]=useState({})
+  //  console.log(advitise)
+  // const [desabled,setDesabled]=useState(false);
+  const url = `http://localhost:8000/addproducts?email=${user?.email}`;
+  
+
+  const {data:myproducts =[],refetch,isLoading} = useQuery({ 
+    queryKey: ['myproducts',user?.email], 
+    queryFn: async()=>{
+      const res = await fetch(url,{
+             headers:{
+           authorization: `bearer ${localStorage.getItem('token')}`
+       }
+      });
+      const data = await res.json();
+      return data;
+    } 
+  
+  })
+  if (isLoading) {
     return <div>
-        <h1>Looding....</h1>
+      <h1>Looding....</h1>
     </div>
-   }
-   console.log(data)
-    return (
-        <div className='grid grid-cols-2 gap-2'>
-            {
-                data.map(addedProduct=><div className="card w-80 my-5 bg-base-100 shadow-xl">
-                <figure><img src={addedProduct.image} alt="Shoes" /></figure>
-                <div className="card-body">
-                  <h2 className="card-title">
-                    Shoes!
-                    <div className="badge badge-secondary">{addedProduct.brand}</div>
-                  </h2>
-                  <p>If a dog chews shoes whose shoes does he choose?</p>
-                  <div className="card-actions justify-end">
-                    <div className="badge badge-outline">Fashion</div> 
-                    <div className="badge badge-outline">Products</div>
-                  </div>
-                </div>
-              </div>)
-            }
-            
-        </div>
-    );
+  }
+
+  const handleDelete = (addedProduct) => {
+    fetch(`http://localhost:8000/addproducts/${addedProduct?._id}`, {
+      method: 'DELETE',
+      //     headers:{
+      //      authorization: `bearer ${localStorage.getItem('token')}`
+      //  }
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data?.deletedCount > 0) {
+          refetch();
+          toast.success(`${addedProduct?.name} deleted successfully`)
+        }
+        console.log(data)
+
+      })
+  }
+
+  const handleDeleteAdvitiseProduct = (addedProduct) => {
+    fetch(`http://localhost:8000/advitis/${addedProduct?._id}`, {
+      method: 'DELETE',
+      //     headers:{
+      //      authorization: `bearer ${localStorage.getItem('token')}`
+      //  }
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data?.deletedCount > 0) {
+          refetch();
+          toast.success(`${addedProduct?.name} deleted successfully`)
+        }
+        console.log(data)
+
+      })
+    console.log(addedProduct?._id)
+  }
+
+ 
+
+  const handleAdvitiseProduct = (addedProduct) => {
+    fetch(`http://localhost:8000/advitiseproduct/${addedProduct?._id}`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify(addedProduct)
+    })
+      .then(res => res.json())
+      .then(result => {
+        console.log(result)
+        toast.success(`${addedProduct?.name} is added successfully`)
+      })
+  }
+  console.log(myproducts)
+  return (
+   
+    <div className='grid grid-cols-2 gap-2'>
+    <Products
+    myproducts={myproducts}
+    handleDelete={handleDelete}
+    handleDeleteAdvitiseProduct={handleDeleteAdvitiseProduct}
+    handleAdvitiseProduct={handleAdvitiseProduct}
+    ></Products>
+    </div>
+  );
 };
 
-export default MyProducts;
+export default MyProducts; 
