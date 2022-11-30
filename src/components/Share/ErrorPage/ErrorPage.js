@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { useNavigate, useRouteError } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
-
+import Lottie from "lottie-react";
+import notfound from '../../assets/icons/not-found.json';
 
 const ErrorPage = () => {
     const {logOut}=useContext(AuthContext)
@@ -17,13 +18,14 @@ const ErrorPage = () => {
     }
     
     return (
-        <div id="error-page">
-        <h1>Oops!</h1>
-        <p>Sorry, an unexpected error 404</p>
-        <p>
+        <div className='mx-auto w-4/5 mt-20 mb-20' id="error-page">
+           
+        
+        <button className='btn btn-warning' onClick={handleLogOut}>Log Out</button>
+        <p className='text-3xl font-bold'>
           <i>{error.statusText || error.message}</i>
         </p>
-        <button className='btn btn-warning' onClick={handleLogOut}>Log Out</button>
+        <Lottie className='w-5/6' animationData={notfound} loop={true} />
       </div>
     );
 };

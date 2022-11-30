@@ -6,6 +6,7 @@ import 'react-day-picker/dist/style.css'
 import { format } from 'date-fns';
 import { AuthContext } from '../../../../Context/AuthProvider';
 import BookingModal from './BookingModal';
+import { useQuery } from '@tanstack/react-query';
 
 
 const MyProductsPage = () => {
@@ -13,13 +14,14 @@ const MyProductsPage = () => {
     const [productPrice,setProductPrice]=useState('')
     const [seleclectedDate, setSelectedDate] = useState(new Date());
     const date = format(seleclectedDate, 'PP');
+
+
     const loadProduct = useLoaderData()
     console.log(loadProduct)
 
+
     return (
-        // <div>
-        //     <h1>{loadProduct.length}</h1>
-        // </div>
+    
         <div>
             <div className='mr-6'>
                 <DayPicker
@@ -38,6 +40,7 @@ const MyProductsPage = () => {
                     <div className="card-body">
                         <h2 className="card-title">{product.name}</h2>
                         <div className='text-1xl font-bold grid grid-cols-3 gap-4 mx-auto w-5/6 my-6 mx-6'>
+                            <p>Product's Id: {product.productid}</p>
                             <p>Location: {product.location}</p>
                             <p>Original Price: {product.originalprice}</p>
                             <p>Posted Date: {product.posteddate}</p>

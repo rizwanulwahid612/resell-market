@@ -1,11 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../../Context/AuthProvider';
 
 const MyBuyers = () => {
+  const {user}=useContext(AuthContext)
     const { data=[], isLoder } = useQuery({
         queryKey: ['buyersinfo'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:8000/buyersinfo');
+            const res = await fetch(`http://localhost:8000/buyersinfo?email=${user?.email}`,{
+              headers:{
+                authorization: `bearer ${localStorage.getItem('token')}`
+            }
+            });
             const data = await res.json();
             console.log(data)
             return data;
@@ -23,6 +29,7 @@ const MyBuyers = () => {
       <tr>
         <th></th>
         <th>Buyer Name & Email</th>
+        <th>Payment:true/false</th>
         <th>Product & Phone Num</th>
         <th>Buyer Area</th>
         <th>Booking Date</th>
@@ -45,6 +52,14 @@ const MyBuyers = () => {
               <div className="text-sm opacity-50">{buyerinfo.BuyerEmail}</div>
             </div>
           </div>
+        </td>
+        <td>
+        {buyerinfo.price && !buyerinfo.paid && <span className='text-red-500'>Not Paid</span>
+
+                  }
+        {
+           buyerinfo.price && buyerinfo.paid && <span className='text-green-500'>Paid</span>
+          }
         </td>
         <td>
         {buyerinfo.product}

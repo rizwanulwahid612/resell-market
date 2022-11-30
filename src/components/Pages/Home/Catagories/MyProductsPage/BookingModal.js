@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../../Context/AuthProvider';
 
@@ -7,7 +7,7 @@ const BookingModal = ({productPrice,seleclectedDate}) => {
   console.log(productPrice)
     const {user}=useContext(AuthContext)
     const date = format(seleclectedDate, 'PP')
-    
+  
         const handleBooking =(event) =>{
            
             event.preventDefault();
@@ -16,6 +16,7 @@ const BookingModal = ({productPrice,seleclectedDate}) => {
             const email= form.email.value;
             const phone = form.phone.value;
             const location = form.location.value;
+            form.reset('')
             console.log(name,email,phone)
     
             const booking ={
@@ -23,10 +24,11 @@ const BookingModal = ({productPrice,seleclectedDate}) => {
                BuyerEmail:email,
                Brand:productPrice.brand,
                Image:productPrice.image,
+               productId:productPrice.productid,
                Seller:productPrice.sellername,
                SellersEmail:productPrice.selleremail,
                product: productPrice.name,
-               price:productPrice.resellprice,
+               price:parseInt(productPrice.resellprice),
                Location:location,
                BuyerPhone:phone,
                BookingDate: date
@@ -51,6 +53,27 @@ const BookingModal = ({productPrice,seleclectedDate}) => {
                       }
                       
           })
+
+        
+            fetch(`http://localhost:8000/deletebookingproduct/${productPrice?._id}`, {
+              method: 'DELETE',
+              //     headers:{
+              //      authorization: `bearer ${localStorage.getItem('token')}`
+              //  }
+            })
+              .then(res => res.json())
+              .then(data => {
+                if (data?.deletedCount > 0) {
+                  // refetch();
+                
+                  
+                  toast.success(`${productPrice?.name} deleted successfully`)
+                }
+                console.log(data)
+        
+              })
+            console.log(productPrice?._id)
+         
      
            }
 

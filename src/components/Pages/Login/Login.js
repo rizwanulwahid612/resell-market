@@ -147,45 +147,7 @@ if(loading){
   }
 
 
-  // const handleGoogleLogin = () => {
-  //   GoogleSignin()
-  //     .then((result) => {
-  //       const user = result.user;
-  //       const currentUser = {
-  //         email: user.email
-  //     }
-  //     console.log(currentUser);
-  //       console.log(user, user.displayName, user.email)
-        
-  //       fetch(`http://localhost:8000/allbuyers?email=${user.email}`,{
-  //         method: 'PUT',
-  //     })
-  //     .then(res=>res.json())
-  //     .then(data => {
-  //          console.log(data)
-  //         if(data.modifiedCount > 0){
-  //             toast.success('Make Buyer SuccessFully')
-  //     setLoafing(false)
-     
-  
-  //   .catch((error) => {
-  //     console.log(error.message);
-  //     setLoginError(error.message)
-  //   });
-  //         }
-      
-  //     })
 
-  //       navigate(from, { replace: true });
-  //       setLoginError('')
-  //       toast.success('successfully login')
-
-  //     }).catch((error) => {
-  //       console.log(error)
-  //     });
-  // }
-
-  
  
 
 

@@ -28,27 +28,38 @@ const DashboardLayout = () => {
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 text-base-content">
                
-                    <li><Link to="/dashboard/myorders">My Orders</Link></li>
-                        <li><Link to="/dashboard/reporttoadmin">Report To Admin</Link></li>
+                   
                         
-                        
-                        
-                        {
-                            isSeller &&
-                            <>
-                        <li><Link to="/dashboard/addproducts">Add Products</Link></li>
-                        <li><Link to="/dashboard/mybuyers">My Buyers</Link></li>
-                        <li><Link to="/dashboard/myProducts">My Products</Link></li>
-                            </>
-                        }
-                      
-
                         { isAdmin && <>
                         <li><Link to="/dashboard/allbuyers">All Buyers</Link></li>
                         <li><Link to="/dashboard/allsellers">All Seller</Link></li>
                         <li><Link to="/dashboard/repoteditems">Repoted Items</Link></li>
+                      
+                        
+                       
                         </>
+                        
                         }
+                        
+                           {
+                           isSeller && <>
+                             <li><Link to="/dashboard/addproducts">Add Products</Link></li>
+                                <li><Link to="/dashboard/mybuyers">My Buyers</Link></li>
+                               <li><Link to="/dashboard/myProducts">My Products</Link></li>
+                               </>
+                           }
+                        
+                        
+                        
+                        
+                      
+                        <li><Link to="/dashboard/myorders">My Orders</Link></li>
+                        
+                    
+                           
+                       
+                    
+                   
 
 
 

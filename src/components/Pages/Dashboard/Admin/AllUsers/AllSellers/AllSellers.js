@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import { FaCheckCircle } from "react-icons/fa";
 
 const AllSellers = () => {
  
@@ -99,7 +100,12 @@ const handleMakeSeller = id =>{
           <td>
             <div className="flex items-center space-x-3">
               <div>
-                <div className="font-bold">{sellers.name}</div>
+               
+                { sellers?.roles ==='seller' && <h1 className="btn btn-xs btn-info text-white"><FaCheckCircle/>{sellers.name}</h1>}
+            {
+              sellers?.roles !=='seller' && <button disabled className="btn btn-xs btn-warning">{sellers.name}</button>
+            }
+            
                 <div className="text-sm opacity-50">{sellers._id}</div>
               </div>
             </div>

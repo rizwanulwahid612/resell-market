@@ -8,9 +8,7 @@ import Products from './Products';
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
-  //  const [advitise,setAdvitise]=useState({})
-  //  console.log(advitise)
-  // const [desabled,setDesabled]=useState(false);
+
   const url = `http://localhost:8000/addproducts?email=${user?.email}`;
   
 

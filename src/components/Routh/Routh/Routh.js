@@ -8,7 +8,7 @@ import AllSellers from "../../Pages/Dashboard/Admin/AllUsers/AllSellers/AllSelle
 import RepotedItems from "../../Pages/Dashboard/Admin/RepotedItems/RepotedItems";
 
 import MyOrders from "../../Pages/Dashboard/Buyer/MyOrders/MyOrders";
-import ReportToAdmin from "../../Pages/Dashboard/Buyer/ReportToAdmin/ReportToAdmin";
+
 import AddProducts from "../../Pages/Dashboard/Seller/AddProducts/AddProducts";
 import MyBuyers from "../../Pages/Dashboard/Seller/MyBuyers/MyBuyers";
 import MyProducts from "../../Pages/Dashboard/Seller/MyProducts/MyProducts";
@@ -35,9 +35,10 @@ const router = createBrowserRouter([
       {path:'/home',element:<Home></Home>,
       loader:()=>fetch('http://localhost:8000/advitiseproduct')
     },      
-    {path:'/productpage/:id',element:<PrivateRouth><MyProductsPage></MyProductsPage></PrivateRouth>,
+    {path:'/productpage/:id',element:<PrivateRouth><BuyerRouth><MyProductsPage></MyProductsPage></BuyerRouth></PrivateRouth>,
     loader:({params})=>fetch(`http://localhost:8000/addproducts/${params.id}`)
     },
+   
       {path:'/blogs',element:<Blogs></Blogs>},
       {path:'/register',element:<Registration></Registration>},
       {path:'/login',element:<Login></Login>}
@@ -49,18 +50,20 @@ const router = createBrowserRouter([
       
       {path:'/dashboard/allbuyers',element:<AdminRouth><AllBuyers></AllBuyers></AdminRouth>},
       {path:'/dashboard/allsellers',element:<AdminRouth><AllSellers></AllSellers></AdminRouth>},
-      {path:'/dashboard/repoteditems',element:<AdminRouth><RepotedItems></RepotedItems></AdminRouth>},
-     
-     
-      {path:'/dashboard/myorders',element:<BuyerRouth><MyOrders></MyOrders></BuyerRouth>},
-      {path:'/dashboard/reporttoadmin',element:<BuyerRouth><ReportToAdmin></ReportToAdmin></BuyerRouth>},
-      {path:'/dashboard/payments/:id',element:<BuyerRouth><Payment></Payment></BuyerRouth>,
-      loader:({params})=>fetch(`http://localhost:8000/myordersbookings/${params.id}`)
-   },
+      {path:'/dashboard/repoteditems',element:<AdminRouth><RepotedItems></RepotedItems></AdminRouth>,
+      loader:()=>fetch('http://localhost:8000/repotedproduct')
+    },
      
       {path:'/dashboard/addproducts',element:<SellerRouth><AddProducts></AddProducts></SellerRouth>},
       {path:'/dashboard/mybuyers',element:<SellerRouth><MyBuyers></MyBuyers></SellerRouth>},
       {path:'/dashboard/myProducts',element:<SellerRouth><MyProducts></MyProducts></SellerRouth>},
+
+      {path:'/dashboard/myorders',element:<BuyerRouth><MyOrders></MyOrders></BuyerRouth>},
+      {path:'/dashboard/payments/:id',element:<BuyerRouth><Payment></Payment></BuyerRouth>,
+      loader:({params})=>fetch(`http://localhost:8000/myordersbookings/${params.id}`)
+   },
+     
+     
    
      
     ]}

@@ -1,8 +1,5 @@
 import React from 'react';
-// myproducts={myproducts}
-// handleDelete={handleDelete}
-// handleDeleteAdvitiseProduct={handleDeleteAdvitiseProduct}
-// handleAdvitiseProduct={handleAdvitiseProduct}
+
 const Products = ({handleAdvitiseProduct,handleDeleteAdvitiseProduct,handleDelete,myproducts}) => {
     
     return (
@@ -15,7 +12,8 @@ const Products = ({handleAdvitiseProduct,handleDeleteAdvitiseProduct,handleDelet
               {addedProduct?.name}
               <div className="badge badge-secondary">{addedProduct?.brand}</div>
             </h2>
-            <p>Posted Date:{addedProduct?.posteddate}</p>
+            <p>Product's id: {addedProduct?.productid}</p>
+            <p>Posted Date: {addedProduct?.posteddate}</p>
             <p>Posted Time: {addedProduct?.postedtime}</p>
             <p>Resell Price: {addedProduct?.resellprice}</p>
             <p>Original Price: {addedProduct?.originalprice}</p>
