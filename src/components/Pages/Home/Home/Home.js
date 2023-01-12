@@ -11,7 +11,7 @@ console.log(loader);
     return (
         <div>
             <Carosol></Carosol>
-           <h1 className='text-2xl text-center font-bold text-green-600'>Advitse area</h1> 
+           <h1 className='text-2xl text-center font-bold text-green-600'>Advertise area</h1> 
             <div className='grid grid-cols-1 lg:grid-cols-2'>
             <div>
             <Lottie className='w-80'  animationData={sellonline} loop={true} />
