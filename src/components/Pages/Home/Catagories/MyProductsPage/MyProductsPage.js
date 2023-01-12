@@ -23,7 +23,7 @@ const MyProductsPage = () => {
     return (
     
         <div>
-            <div className='mr-6'>
+            <div className='mx-auto w-96'>
                 <DayPicker
                     mode="single"
                     selected={seleclectedDate}
@@ -35,11 +35,11 @@ const MyProductsPage = () => {
             </div>
 
             {
-                loadProduct.map(product => <div className="card card-compact w-full bg-base-100 shadow-xl my-10">
-                    <figure><img src={product.image} alt="Shoes" /></figure>
+                loadProduct.map(product => <div className="card card-compact w-3/4 mx-auto bg-base-100 shadow-xl my-10">
+                    <figure><img className='w-96' src={product.image} alt="Shoes" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">{product.name}</h2>
-                        <div className='text-1xl font-bold grid grid-cols-3 gap-4 mx-auto w-5/6 my-6 mx-6'>
+                        <div className='text-1xl font-bold grid lg:grid-cols-3 sm:grid-cols-1 gap-4 mx-auto w-5/6 my-6 mx-6 '>
                             <p>Product's Id: {product.productid}</p>
                             <p>Location: {product.location}</p>
                             <p>Original Price: {product.originalprice}</p>

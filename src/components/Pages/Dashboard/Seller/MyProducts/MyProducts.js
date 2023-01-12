@@ -9,7 +9,7 @@ import Products from './Products';
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:8000/addproducts?email=${user?.email}`;
+  const url = `https://resell-server-rizwanulwahid612.vercel.app/addproducts?email=${user?.email}`;
   
 
   const {data:myproducts =[],refetch,isLoading} = useQuery({ 
@@ -32,7 +32,7 @@ const MyProducts = () => {
   }
 
   const handleDelete = (addedProduct) => {
-    fetch(`http://localhost:8000/addproducts/${addedProduct?._id}`, {
+    fetch(`https://resell-server-rizwanulwahid612.vercel.app/addproducts/${addedProduct?._id}`, {
       method: 'DELETE',
       //     headers:{
       //      authorization: `bearer ${localStorage.getItem('token')}`
@@ -50,7 +50,7 @@ const MyProducts = () => {
   }
 
   const handleDeleteAdvitiseProduct = (addedProduct) => {
-    fetch(`http://localhost:8000/advitis/${addedProduct?._id}`, {
+    fetch(`https://resell-server-rizwanulwahid612.vercel.app/advitis/${addedProduct?._id}`, {
       method: 'DELETE',
       //     headers:{
       //      authorization: `bearer ${localStorage.getItem('token')}`
@@ -71,7 +71,7 @@ const MyProducts = () => {
  
 
   const handleAdvitiseProduct = (addedProduct) => {
-    fetch(`http://localhost:8000/advitiseproduct/${addedProduct?._id}`, {
+    fetch(`https://resell-server-rizwanulwahid612.vercel.app/advitiseproduct/${addedProduct?._id}`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -80,15 +80,21 @@ const MyProducts = () => {
       body: JSON.stringify(addedProduct)
     })
       .then(res => res.json())
-      .then(result => {
-        console.log(result)
-        toast.success(`${addedProduct?.name} is added successfully`)
-      })
+      .then(data =>{
+        if(data.acknowledged){
+                  
+                    toast.success(`${addedProduct?.name} advitise product`)
+                }
+                else{
+                    toast.error(data.message)
+                }
+                
+    })
   }
   console.log(myproducts)
   return (
    
-    <div className='grid grid-cols-2 gap-2'>
+    <div className=''>
     <Products
     myproducts={myproducts}
     handleDelete={handleDelete}

@@ -9,7 +9,7 @@ const {user}=useContext(AuthContext)
     const { data:myorders=[], isLoder } = useQuery({
         queryKey: ['oducts',user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:8000/myordersbookings?email=${user?.email}`,{
+            const res = await fetch(`https://resell-server-rizwanulwahid612.vercel.app/myordersbookings?email=${user?.email}`,{
               headers:{
                     authorization: `bearer ${localStorage.getItem('token')}`
                 }
@@ -30,7 +30,7 @@ const {user}=useContext(AuthContext)
     }
 
     const handleRepotedProduct=(bookingItem)=>{
-      fetch(`http://localhost:8000/repotedproduct/${bookingItem?._id}`, {
+      fetch(`https://resell-server-rizwanulwahid612.vercel.app/repotedproduct/${bookingItem?._id}`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -46,7 +46,7 @@ const {user}=useContext(AuthContext)
     }
 
     return (
-        <div className='grid grid-cols-2 g-4'>
+        <div className='grid sm:grid-cols-1 lg:grid-cols-2 g-4 ml-6'>
             
                 {myorders &&
                   myorders?.map(bookingItem=><div className="card w-80 bg-base-100 shadow-xl mt-6 mb-6">

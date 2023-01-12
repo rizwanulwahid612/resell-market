@@ -9,7 +9,7 @@ const AllSellers = () => {
  
     queryKey: ['allsellers'], 
     queryFn:async()=>{
-      const res = await fetch('http://localhost:8000/allsellers',{
+      const res = await fetch('https://resell-server-rizwanulwahid612.vercel.app/allsellers',{
       //   headers: {
       //     authorization: `bearer ${localStorage.getItem('token')}`
       // }
@@ -21,7 +21,7 @@ const AllSellers = () => {
   });
 
   const handleMakeAdmin = id => {
-    fetch(`http://localhost:8000/sellers/admin/${id}`,{
+    fetch(`https://resell-server-rizwanulwahid612.vercel.app/sellers/admin/${id}`,{
         method: 'PUT',
         headers:{
             authorization: `bearer ${localStorage.getItem('token')}`
@@ -38,7 +38,7 @@ const AllSellers = () => {
 }
 
 const handleMakeSeller = id =>{
-  fetch(`http://localhost:8000/sellers/seller/${id}`,{
+  fetch(`https://resell-server-rizwanulwahid612.vercel.app/sellers/seller/${id}`,{
     method: 'PUT',
     headers:{
         authorization: `bearer ${localStorage.getItem('token')}`
@@ -57,7 +57,7 @@ const handleMakeSeller = id =>{
 
 
     const handleDeletedsellers =(sellers)=>{
-      fetch(`http://localhost:8000/seller/${sellers?._id}`,{
+      fetch(`https://resell-server-rizwanulwahid612.vercel.app/seller/${sellers?._id}`,{
            method:'DELETE',
         //    headers:{
         //     authorization: `bearer ${localStorage.getItem('token')}`
@@ -119,6 +119,7 @@ const handleMakeSeller = id =>{
             {
               sellers?.role ==='admin' && <button disabled className="btn btn-xs btn-info">Admin</button>
             }
+            
             </td>
 
 

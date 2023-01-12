@@ -24,6 +24,8 @@ import PrivateRouth from "../PrivateRouth/PrivateRouth";
 import AdminRouth from "../AdminRouth/AdminRouth";
 import SellerRouth from "../SellerRouth/SellerRouth";
 import BuyerRouth from "../BuyerRouth/BuyerRouth";
+import AdminCheckProduct from "../../Pages/Dashboard/Admin/AdminChekProduct/AdminCheckProduct";
+import Dashboard from "../../Pages/Dashboard/Dashboard";
 // import AdminRouth from "../AdminRouth/AdminRouth";
 
 
@@ -33,10 +35,10 @@ const router = createBrowserRouter([
     children:[
       {path:'/',element:<Home></Home>},
       {path:'/home',element:<Home></Home>,
-      loader:()=>fetch('http://localhost:8000/advitiseproduct')
+      loader:()=>fetch('https://resell-server-rizwanulwahid612.vercel.app/advitiseproduct')
     },      
     {path:'/productpage/:id',element:<PrivateRouth><BuyerRouth><MyProductsPage></MyProductsPage></BuyerRouth></PrivateRouth>,
-    loader:({params})=>fetch(`http://localhost:8000/addproducts/${params.id}`)
+    loader:({params})=>fetch(`https://resell-server-rizwanulwahid612.vercel.app/addproducts/${params.id}`)
     },
    
       {path:'/blogs',element:<Blogs></Blogs>},
@@ -47,12 +49,13 @@ const router = createBrowserRouter([
     element:<PrivateRouth><DashboardLayout></DashboardLayout></PrivateRouth>,
     errorElement:<ErrorPage></ErrorPage>,
     children:[
-      
+      {path:'/dashboard',element:<PrivateRouth><Dashboard></Dashboard></PrivateRouth>},
       {path:'/dashboard/allbuyers',element:<AdminRouth><AllBuyers></AllBuyers></AdminRouth>},
       {path:'/dashboard/allsellers',element:<AdminRouth><AllSellers></AllSellers></AdminRouth>},
       {path:'/dashboard/repoteditems',element:<AdminRouth><RepotedItems></RepotedItems></AdminRouth>,
-      loader:()=>fetch('http://localhost:8000/repotedproduct')
+      loader:()=>fetch('https://resell-server-rizwanulwahid612.vercel.app/repotedproduct')
     },
+    {path:'/dashboard/adminproduct',element:<AdminRouth><AdminCheckProduct></AdminCheckProduct></AdminRouth>},
      
       {path:'/dashboard/addproducts',element:<SellerRouth><AddProducts></AddProducts></SellerRouth>},
       {path:'/dashboard/mybuyers',element:<SellerRouth><MyBuyers></MyBuyers></SellerRouth>},
@@ -60,7 +63,7 @@ const router = createBrowserRouter([
 
       {path:'/dashboard/myorders',element:<BuyerRouth><MyOrders></MyOrders></BuyerRouth>},
       {path:'/dashboard/payments/:id',element:<BuyerRouth><Payment></Payment></BuyerRouth>,
-      loader:({params})=>fetch(`http://localhost:8000/myordersbookings/${params.id}`)
+      loader:({params})=>fetch(`https://resell-server-rizwanulwahid612.vercel.app/myordersbookings/${params.id}`)
    },
      
      

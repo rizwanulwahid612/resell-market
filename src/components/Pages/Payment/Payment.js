@@ -9,9 +9,10 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
 const Payment = () => {
     const productPayment = useLoaderData();
+    console.log(productPayment)
     const { BookingDate, Brand, Buyer, BuyerEmail, BuyerPhone, Image, Location, Seller, SellersEmail, price, product, _id } = productPayment;
     return (
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card w-96 bg-base-100 shadow-xl mx-auto">
             <div className="card-body">
                 <figure><img className="rounded-xl" src={Image} alt="Shoes" /></figure>
 

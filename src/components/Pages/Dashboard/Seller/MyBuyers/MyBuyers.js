@@ -5,9 +5,9 @@ import { AuthContext } from '../../../../Context/AuthProvider';
 const MyBuyers = () => {
   const {user}=useContext(AuthContext)
     const { data=[], isLoder } = useQuery({
-        queryKey: ['buyersinfo'],
+        queryKey: ['buyersinfo',user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:8000/buyersinfo?email=${user?.email}`,{
+            const res = await fetch(`https://resell-server-rizwanulwahid612.vercel.app/buyersinfo?email=${user?.email}`,{
               headers:{
                 authorization: `bearer ${localStorage.getItem('token')}`
             }
@@ -38,38 +38,38 @@ const MyBuyers = () => {
     <tbody>
 
 {
-    data.map((buyerinfo,i)=><tr>
+    data?.map((buyerinfo,i)=><tr>
       <th>{i+1}</th>
         <td>
           <div className="flex items-center space-x-3">
             <div className="avatar">
               <div className="mask mask-squircle w-12 h-12">
-                <img src={buyerinfo.Image} alt='/' />
+                <img src={buyerinfo?.Image} alt='/' />
               </div>
             </div>
             <div>
-              <div className="font-bold">{buyerinfo.Buyer}</div>
-              <div className="text-sm opacity-50">{buyerinfo.BuyerEmail}</div>
+              <div className="font-bold">{buyerinfo?.Buyer}</div>
+              <div className="text-sm opacity-50">{buyerinfo?.BuyerEmail}</div>
             </div>
           </div>
         </td>
         <td>
-        {buyerinfo.price && !buyerinfo.paid && <span className='text-red-500'>Not Paid</span>
+        {buyerinfo?.price && !buyerinfo?.paid && <span className='text-red-500'>Not Paid</span>
 
                   }
         {
-           buyerinfo.price && buyerinfo.paid && <span className='text-green-500'>Paid</span>
+           buyerinfo?.price && buyerinfo?.paid && <span className='text-green-500'>Paid</span>
           }
         </td>
         <td>
-        {buyerinfo.product}
+        {buyerinfo?.product}
         
           <br/>
-          <span className="badge badge-ghost badge-sm">Phone: {buyerinfo.BuyerPhone}</span>
+          <span className="badge badge-ghost badge-sm">Phone: {buyerinfo?.BuyerPhone}</span>
         </td>
-        <td>{buyerinfo.Location}</td>
+        <td>{buyerinfo?.Location}</td>
         <th>
-          <button className="btn btn-ghost btn-xs">{buyerinfo.BookingDate}</button>
+          <button className="btn btn-ghost btn-xs">{buyerinfo?.BookingDate}</button>
         </th>
       </tr>)
 }

@@ -16,6 +16,7 @@ const AddProducts = () => {
    
     
     const onSubmit = data => {
+      
         const image=data.photo[0];
         const formData = new FormData();
         formData.append('image', image);
@@ -47,7 +48,7 @@ const AddProducts = () => {
      }
    
         console.log(product)
-        fetch('http://localhost:8000/addproducts',{
+        fetch('https://resell-server-rizwanulwahid612.vercel.app/addproducts',{
           method:'POST',
           headers:{
             'content-type':'application/json',
@@ -76,14 +77,14 @@ const AddProducts = () => {
 
 
     return (
-         <div className="hero min-h-screen bg-base-200">
+         <div className="hero min-h-screen bg-base-200 mx-auto"style={{width:'60vw'}}>
       <div className="hero-content flex-col lg:flex">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Add Products</h1>
 
         </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+        <div className="">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body"style={{width:'50vw'}}>
           
             <div className="form-control">
               <label className="label">

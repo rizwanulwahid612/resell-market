@@ -5,7 +5,7 @@ const TokenHook = email => {
     const [token, setToken] = useState('');
     useEffect(() => {
         if (email) {        
-            fetch(`http://localhost:8000/jwt?email=${email}`)
+            fetch(`https://resell-server-rizwanulwahid612.vercel.app/jwt?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data.accessToken) {

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
-
+import { FaDiscord } from "react-icons/fa";
 
 
 const Navbar = () => {
@@ -14,9 +14,8 @@ const Navbar = () => {
      console.log(error)
     });
   }
-    const reactItem= <React.Fragment>
+    const reactItem= <React.Fragment className="font-bold">
               <li><Link to='/home'>Home</Link></li>
-              {/* <li><Link to='/products/:id'>Products</Link></li> */}
               <li><Link to='/blogs'>Blogs</Link></li>
              {user?.uid?
              <>
@@ -31,7 +30,7 @@ const Navbar = () => {
             }
     </React.Fragment>
     return (
-        <div className="navbar bg-base-100 flex justify-between">
+        <div className="navbar bg-green-500 text-blue-900 flex justify-between">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -41,7 +40,7 @@ const Navbar = () => {
              {reactItem}
             </ul>
           </div>
-          <Link to='/' className="btn btn-ghost normal-case text-xl">Laptop Resell Store</Link>
+          <Link to='/' className="btn btn-ghost normal-case text-xl"><FaDiscord/>Resell Store</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">

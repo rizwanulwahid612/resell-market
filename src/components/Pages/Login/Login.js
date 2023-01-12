@@ -5,6 +5,8 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider';
 import { FcGoogle } from "react-icons/fc";
 import TokenHook from '../../Hooks/TokenHook/TokenHook';
+import Lottie from "lottie-react";
+import loginin from "../../assets/icons/login.json";
 const Login = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -33,7 +35,7 @@ const [error,setError]=useState('')
     console.log(email, password, options);
     if(options==='Seller'){
      
-        fetch(`http://localhost:8000/allsellers?email=${email}`,{
+        fetch(`https://resell-server-rizwanulwahid612.vercel.app/allsellers?email=${email}`,{
           method: 'PUT',
           headers:{
               authorization: `bearer ${localStorage.getItem('token')}`
@@ -64,7 +66,7 @@ const [error,setError]=useState('')
     
     }
     if(email){
-      fetch(`http://localhost:8000/sellers/seller/${email}`)
+      fetch(`https://resell-server-rizwanulwahid612.vercel.app/sellers/seller/${email}`)
       .then(res => res.json())
           .then(data => {
             loginUser(email, password)
@@ -105,7 +107,7 @@ if(loading){
     console.log(currentUser);
 
     //get token
-    fetch('http://localhost:8000/jwt', {
+    fetch('https://resell-server-rizwanulwahid612.vercel.app/jwt', {
       method: 'POST',
       headers: {
           'content-type': 'application/json'
@@ -116,7 +118,7 @@ if(loading){
   .then(data => {
     console.log(data);
     console.log(data)
-    fetch(`http://localhost:8000/allbuyers?email=${user.email}`,{
+    fetch(`https://resell-server-rizwanulwahid612.vercel.app/allbuyers?email=${user.email}`,{
       method: 'PUT',
   })
   .then(res=>res.json())
@@ -175,12 +177,15 @@ if(loading){
 
   return (
     <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content flex-col lg:flex">
+       
+      <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Login now!</h1>
-
+          <p className="py-6"><div>
+            <Lottie className='w-72' animationData={loginin} loop={true} />
+            </div></p>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div onBlur={handleforgotPass} className="form-control">
               <label className="label">
@@ -231,7 +236,7 @@ if(loading){
               <button type="submit">LogIN</button>
             </div>
           </form>
-          <div className="mx-6 btn mb-10 btn-warning">
+          <div className="mx-16 btn mb-10 btn-warning">
             <button style={{ display: 'flex' }} onClick={handleGoogleLogin} type="submit"><FcGoogle></FcGoogle> GoogleLogin</button>
           </div>
         </div>

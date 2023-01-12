@@ -1,3 +1,4 @@
+//https://resell-server-rizwanulwahid612.vercel.app
 import { format } from 'date-fns';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -34,7 +35,7 @@ const BookingModal = ({productPrice,seleclectedDate}) => {
                BookingDate: date
             }
             console.log(booking)
-            fetch('http://localhost:8000/bookings',{
+            fetch('https://resell-server-rizwanulwahid612.vercel.app/bookings',{
               method:'POST',
               headers:{
                   'content-type':'application/json'
@@ -55,24 +56,24 @@ const BookingModal = ({productPrice,seleclectedDate}) => {
           })
 
         
-            fetch(`http://localhost:8000/deletebookingproduct/${productPrice?._id}`, {
-              method: 'DELETE',
-              //     headers:{
-              //      authorization: `bearer ${localStorage.getItem('token')}`
-              //  }
-            })
-              .then(res => res.json())
-              .then(data => {
-                if (data?.deletedCount > 0) {
-                  // refetch();
+            // fetch(`https://resell-server-rizwanulwahid612.vercel.app/deletebookingproduct/${productPrice?._id}`, {
+            //   method: 'DELETE',
+            //   //     headers:{
+            //   //      authorization: `bearer ${localStorage.getItem('token')}`
+            //   //  }
+            // })
+            //   .then(res => res.json())
+            //   .then(data => {
+            //     if (data?.deletedCount > 0) {
+            //       // refetch();
                 
                   
-                  toast.success(`${productPrice?.name} deleted successfully`)
-                }
-                console.log(data)
+            //       toast.success(`${productPrice?.name} deleted successfully`)
+            //     }
+            //     console.log(data)
         
-              })
-            console.log(productPrice?._id)
+            //   })
+            // console.log(productPrice?._id)
          
      
            }

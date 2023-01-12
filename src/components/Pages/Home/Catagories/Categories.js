@@ -3,25 +3,13 @@ import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 
 const Categories = () => {
-    // const { data=[], refetch,isLoading } = useQuery({
-    //     queryKey: ['sellersproducts'],
-    //     queryFn: async () => {
-    //         const res = await fetch('http://localhost:8000/sellersproducts');
-    //         const data = await res.json();
-    //         return data;
-    //     }
-    // });
-    // console.log(data)
-
-    // if(isLoading){
-    //     return <div><h1>Loading...</h1></div>
-    // }
+   
 
   //new category
   const { data=[], isLoder } = useQuery({
     queryKey: ['sellersproducts'],
     queryFn: async () => {
-        const res = await fetch('http://localhost:8000/category');
+        const res = await fetch('https://resell-server-rizwanulwahid612.vercel.app/category');
         const data = await res.json();
         return data;
     }
@@ -36,7 +24,7 @@ if(isLoder){
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 my-10'>
 
             {data &&
-                data?.map(categories => <div className="card w-full glass">
+                data?.map(categories => <div className="card w-72 glass" style={{boxShadow:'3px 4px 8px gray'}}>
                     <figure><img src={categories.image} alt="car!" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">BRAND: {categories.brand}</h2>

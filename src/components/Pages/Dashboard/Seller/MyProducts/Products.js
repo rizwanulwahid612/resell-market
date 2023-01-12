@@ -3,10 +3,10 @@ import React from 'react';
 const Products = ({handleAdvitiseProduct,handleDeleteAdvitiseProduct,handleDelete,myproducts}) => {
     
     return (
-        <div>
+      <div className='grid sm:grid-cols-1 lg:grid-cols-2 g-4 ml-6'>
               {myproducts &&
-        myproducts?.map(addedProduct => <div key={addedProduct?._id} className="card w-80 my-5 bg-base-100 shadow-xl">
-          <figure><img src={addedProduct?.image} alt="Shoes" /></figure>
+        myproducts?.map(addedProduct => <div key={addedProduct?._id} className="card w-80 bg-base-100 shadow-xl mt-6 mb-6">
+          <figure><img className='h-56' src={addedProduct?.image} alt="Shoes" /></figure>
           <div className="card-body">
             <h2 className="card-title">
               {addedProduct?.name}

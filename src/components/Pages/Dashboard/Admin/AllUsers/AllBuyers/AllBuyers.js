@@ -7,7 +7,7 @@ const AllSellers = () => {
 
     queryKey: ['allbuyers'], 
     queryFn:async()=>{
-      const res = await fetch('http://localhost:8000/allbuyers',{
+      const res = await fetch('https://resell-server-rizwanulwahid612.vercel.app/allbuyers',{
         headers: {
           authorization: `bearer ${localStorage.getItem('token')}`
       }
@@ -18,7 +18,7 @@ const AllSellers = () => {
     } })
 
     const handleDeletedBuyers =(buyers)=>{
-      fetch(`http://localhost:8000/buyers/${buyers?._id}`,{
+      fetch(`https://resell-server-rizwanulwahid612.vercel.app/buyers/${buyers?._id}`,{
            method:'DELETE',
         //    headers:{
         //     authorization: `bearer ${localStorage.getItem('token')}`

@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const CheckoutForm = ({productPayment}) => {
 
@@ -11,11 +12,11 @@ const CheckoutForm = ({productPayment}) => {
     const stripe = useStripe();
     const elements = useElements();
 
-    const { BookingDate, Brand, Buyer, BuyerEmail, BuyerPhone, Image, Location, Seller, SellersEmail, price, product, _id } = productPayment;
+    const {productId ,BookingDate, Brand, Buyer, BuyerEmail, BuyerPhone, Image, Location, Seller, SellersEmail, price, product, _id } = productPayment;
 
     useEffect(() => {
       // Create PaymentIntent as soon as the page loads
-      fetch("http://localhost:8000/create-payment-intent", {
+      fetch("https://resell-server-rizwanulwahid612.vercel.app/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json",
         authorization: `bearer ${localStorage.getItem('token')}`
@@ -79,9 +80,10 @@ const CheckoutForm = ({productPayment}) => {
            price,
            transactionId: paymentIntent.id,
            BuyerEmail,
-           bookingId: _id
+           bookingId: _id,
+           productId:productId
        }
-       fetch('http://localhost:8000/payments', {
+       fetch('https://resell-server-rizwanulwahid612.vercel.app/payments', {
            method: 'POST',
            headers: {
                'content-type': 'application/json',
@@ -95,6 +97,44 @@ const CheckoutForm = ({productPayment}) => {
                if (data.insertedId) {
                    setSuccess('Congrats! your payment completed');
                    setTransactionId(paymentIntent.id);
+
+
+                   fetch(`https://resell-server-rizwanulwahid612.vercel.app/deletebookingproduct/${productId}`, {
+                    method: 'DELETE',
+                    
+                  })
+                    .then(res => res.json())
+                    .then(data => {
+                      if (data?.deletedCount > 0) {
+                        // refetch();
+                      
+                        
+                        toast.success(`${payment.productId} deleted successfully`)
+                      }
+                      console.log(data)
+              
+                    })
+                  console.log(payment.productId)
+
+
+                  fetch(`https://resell-server-rizwanulwahid612.vercel.app/deletepaidadvitisproduct/${productId}`, {
+                    method: 'DELETE',
+                    
+                  })
+                    .then(res => res.json())
+                    .then(data => {
+                      if (data?.deletedCount > 0) {
+                        // refetch();
+                      
+                        
+                        toast.success(`${payment.productId} deleted successfully`)
+                        
+                      }
+                      console.log(data)
+              
+                    })
+                  console.log(payment.productId)
+
                }
            })
           

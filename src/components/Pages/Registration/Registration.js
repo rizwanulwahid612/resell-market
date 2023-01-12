@@ -4,7 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider';
 import TokenHook from '../../Hooks/TokenHook/TokenHook';
-
+import Lottie from "lottie-react";
+import reg from "../../assets/icons/signup.json";
 
 const Registration = () => {
     const {createUser,updateProfileUser}=useContext(AuthContext)
@@ -48,7 +49,7 @@ const Registration = () => {
 
     const sellersInfo =(name,email)=>{
       const sellers={name,email}
-      fetch('http://localhost:8000/sellers',{
+      fetch('https://resell-server-rizwanulwahid612.vercel.app/sellers',{
         method:'POST',
         headers:{
           'content-type':'application/json'
@@ -66,12 +67,14 @@ const Registration = () => {
 
     return (
         <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex">
+        <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Register now!</h1>
-            
+            <p className="py-6"><div>
+            <Lottie className='w-72' animationData={reg} loop={true} />
+            </div></p>
           </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="form-control">
                 <label className="label">
@@ -103,8 +106,9 @@ const Registration = () => {
                     message: "min length is 5"
           } })} />
                 {errors.password && <p role="alert">{errors.password?.message}</p>}
-                
+                <div style={{marginBottom:'30px'}}>
                 <Link to="/login" className="label-text-alt link link-hover">Already have any account. plz Login?</Link>
+                </div>
               </div>
               <div className="  btn btn-info">
                 <button type="submit">Register</button>
